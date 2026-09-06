@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Pandas基础 | Robrashi's blogs</title><meta name="author" content="Robrashi"><meta name="copyright" content="Robrashi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="文件的读取和写入12import pandas as pdimport numpy as np 文件读取12df_csv &#x3D; pd.read_csv(&#x27;data&#x2F;my_csv.csv&#x27;)print(df_csv) &#x3D;&#x3D;关于文件读取：data&#x2F;my_csv.csv是相对路径（相对于打开的文件夹）&#x3D;&#x3D;这里有一些常用的公共参数，hea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas基础">
+<meta property="og:url" content="https://robrashi258.github.io/2026/09/04/Pandas%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Robrashi&#39;s blogs">
+<meta property="og:description" content="文件的读取和写入12import pandas as pdimport numpy as np 文件读取12df_csv &#x3D; pd.read_csv(&#x27;data&#x2F;my_csv.csv&#x27;)print(df_csv) &#x3D;&#x3D;关于文件读取：data&#x2F;my_csv.csv是相对路径（相对于打开的文件夹）&#x3D;&#x3D;这里有一些常用的公共参数，hea">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://robrashi258.github.io/image/avatar.png">
+<meta property="article:published_time" content="2026-09-04T11:45:39.335Z">
+<meta property="article:modified_time" content="2026-09-06T07:25:18.594Z">
+<meta property="article:author" content="Robrashi">
+<meta property="article:tag" content="数据分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://robrashi258.github.io/image/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pandas基础",
+  "url": "https://robrashi258.github.io/2026/09/04/Pandas%E5%9F%BA%E7%A1%80/",
+  "image": "https://robrashi258.github.io/image/avatar.png",
+  "datePublished": "2026-09-04T11:45:39.335Z",
+  "dateModified": "2026-09-06T07:25:18.594Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Robrashi",
+      "url": "https://Robrashi258.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://robrashi258.github.io/2026/09/04/Pandas%E5%9F%BA%E7%A1%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pandas基础',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  :root {
+    --card-bg: #f0f0f0;
+    --font-color: #333333;
+    --global-font-size: 16px;
+  }
+  #article-container {
+    color: #444444;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #2c2c2c;
+  }
+  [data-theme='dark'] {
+    --card-bg: #121212;
+    --font-color: rgba(255, 255, 255, .7);
+  }
+  [data-theme='dark'] #article-container {
+    color: rgba(255, 255, 255, .7);
+  }
+  [data-theme='dark'] h1,
+  [data-theme='dark'] h2,
+  [data-theme='dark'] h3,
+  [data-theme='dark'] h4,
+  [data-theme='dark'] h5,
+  [data-theme='dark'] h6 {
+    color: rgba(255, 255, 255, .9);
+  }
+</style>
+<meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/image/background.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/default_top_image_2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Robrashi's blogs</span></a><a class="nav-page-title" href="/"><span class="site-name">Pandas基础</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Pandas基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-04T11:45:39.335Z" title="发表于 2026-09-04 19:45:39">2026-09-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-06T07:25:18.594Z" title="更新于 2026-09-06 15:25:18">2026-09-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="文件的读取和写入"><a href="#文件的读取和写入" class="headerlink" title="文件的读取和写入"></a>文件的读取和写入</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_csv = pd.read_csv(<span class="string">&#x27;data/my_csv.csv&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(df_csv)</span><br></pre></td></tr></table></figure>
+<p>&#x3D;&#x3D;关于文件读取：data&#x2F;my_csv.csv是相对路径（相对于打开的文件夹）&#x3D;&#x3D;<br>这里有一些常用的公共参数，header&#x3D;None 表示第一行不作为列名，index_col 表示把某一列或几列作为索 引，索引的内容将会在第三章进行详述，usecols 表示读取列的集合，默认读取所有的列，parse_dates 表示 需要转化为时间的列，关于时间序列的有关内容将在第十章讲解，nrows 表示读取的数据行数。上面这些参 数在上述的三个函数里都可以使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">df_table = pd.read_table(<span class="string">&#x27;data/my_table.txt&#x27;</span>,header=<span class="literal">None</span>)</span><br><span class="line"><span class="built_in">print</span>(df_table)</span><br><span class="line">Out: </span><br><span class="line">     <span class="number">0</span>     <span class="number">1</span>     <span class="number">2</span>                <span class="number">3</span></span><br><span class="line">	<span class="number">0</span>  col1  col2  col3             col4</span><br><span class="line">	<span class="number">1</span>     <span class="number">2</span>     a   <span class="number">1.4</span>   apple <span class="number">2020</span>/<span class="number">1</span>/<span class="number">1</span></span><br><span class="line">	<span class="number">2</span>     <span class="number">3</span>     b   <span class="number">3.4</span>  banana <span class="number">2020</span>/<span class="number">1</span>/<span class="number">2</span></span><br><span class="line">	<span class="number">3</span>     <span class="number">6</span>     c   <span class="number">2.5</span>  orange <span class="number">2020</span>/<span class="number">1</span>/<span class="number">5</span></span><br><span class="line">	<span class="number">4</span>     <span class="number">5</span>     d   <span class="number">3.2</span>   lemon <span class="number">2020</span>/<span class="number">1</span>/<span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>在读取 txt 文件时，经常遇到分隔符非空格的情况，read_table 有一个分割参数 sep ，它使得用户可以自定 义分割符号，进行 txt 数据的读取。例如，下面的读取的表以 |||| 为分割。这时可以使用 sep ，同时需要指定引擎为 python ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_table = pd.read_table(<span class="string">&#x27;data/my_table_special_sep.txt&#x27;</span>,</span><br><span class="line">                         sep=<span class="string">&#x27;\|\|\|\|&#x27;</span>,engine=<span class="string">&#x27;python&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(df_table)</span><br></pre></td></tr></table></figure>
+<p>在使用 read_table 的时候需要注意，参数 sep 中使用的是正则表达式，因此需要对 | 进行转义 变成 \| ，否则无法读取到正确的结果。有关正则表达式的基本内容可以参考第八章或者其他相 关资料。</p>
+<h2 id="数据写入"><a href="#数据写入" class="headerlink" title="数据写入"></a>数据写入</h2><p>一般在数据写入中，最常用的操作是把 index 设置为 False ，特别当索引没有特殊意义的时候，这样的行为 能把索引在保存的时候去除。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_csv = pd.read_csv(<span class="string">&#x27;data/my_csv.csv&#x27;</span>)</span><br><span class="line">df_csv.to_csv(<span class="string">&#x27;data/my_csv_saved.csv&#x27;</span>,index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>pandas 中没有定义 to_table 函数，但是 to_csv 可以保存为 txt 文件，并且允许自定义分隔符，常用制表符 \t 分割：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--snip--</span><br><span class="line">df_txt.to_csv(<span class="string">&#x27;data/my_txt_saved.txt&#x27;</span>, sep=<span class="string">&#x27;\t&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>如果想要把表格快速转换为 markdown 和 latex 语言，可以使用 to_markdown 和 to_latex 函数，此处需要 安装 tabulate 包。</p>
+<h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><p>Series 一般由四个部分组成，分别是序列的值 data 、索引 index 、存储类型 dtype 、序列的名字 name 。其 中，索引也可以指定它的名字，默认为空。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series(data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">              index = pd.Index([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>],name=<span class="string">&#x27;my_idx&#x27;</span>),</span><br><span class="line">              dtype = <span class="string">&#x27;int32&#x27;</span>,</span><br><span class="line">              name = <span class="string">&#x27;my_series&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
+<p>&#x3D;&#x3D;pd.Index([‘a’, ‘b’, ‘c’, ‘d’, ‘e’],name&#x3D;’my_idx’)<br>注意）的位置，否则会出现2个name&#x3D;&#x3D;<br>object 代表了一种混合类型，正如上面的例子中存储了整数、字符串以及 Python 的字典数据结 构。此外，目前 pandas 把纯字符串序列也默认认为是一种 object 类型的序列，但它也可以用 string 类型存储，文本序列的内容会在第八章中讨论。<br><strong>对于这些属性，可以通过 . 的方式来获取：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--snip--</span><br><span class="line"><span class="built_in">print</span>(s.values)</span><br><span class="line">Out: [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(s.index)</span><br><span class="line"><span class="built_in">print</span>(s.name)</span><br><span class="line"><span class="built_in">print</span>(s.dtype)</span><br></pre></td></tr></table></figure>
+<p><strong>利用 .shape 可以获取序列的长度。</strong><br>索引是 pandas 中最重要的概念之一，它将在第三章中被详细地讨论。如果想要取出单个索引对应的值，可 以通过 [index_item] 可以取出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--snip--</span><br><span class="line">s_third = s[<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(s_third)</span><br></pre></td></tr></table></figure>
+<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><p>DataFrame 在 Series 的基础上增加了列索引，一个数据框可以由二维的 data 与行列索引来构造：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>, <span class="number">1.2</span>], [<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>, <span class="number">2.2</span>], [<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>, <span class="number">3.2</span>]]</span><br><span class="line">df = pd.DataFrame(data = data,</span><br><span class="line">                  index = [<span class="string">&#x27;row_%d&#x27;</span>%i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)],</span><br><span class="line">                  columns=[<span class="string">&#x27;col_0&#x27;</span>, <span class="string">&#x27;col_1&#x27;</span>, <span class="string">&#x27;col_2&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">Out:   col_0 col_1  col_2</span><br><span class="line">row_0      <span class="number">1</span>     a    <span class="number">1.2</span></span><br><span class="line">row_1      <span class="number">2</span>     b    <span class="number">2.2</span></span><br><span class="line">row_2      <span class="number">3</span>     c    <span class="number">3.2</span>                </span><br></pre></td></tr></table></figure>
+<p>但一般而言，更多的时候会采用从列索引名到数据的映射来构造数据框，同时再加上行索引：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(data = &#123;<span class="string">&#x27;col_0&#x27;</span>: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">                          <span class="string">&#x27;col_1&#x27;</span>:<span class="built_in">list</span>(<span class="string">&#x27;abc&#x27;</span>),</span><br><span class="line">                          <span class="string">&#x27;col_2&#x27;</span>: [<span class="number">1.2</span>, <span class="number">2.2</span>, <span class="number">3.2</span>]&#125;,</span><br><span class="line">                  index = [<span class="string">&#x27;row_%d&#x27;</span>%i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)])</span><br></pre></td></tr></table></figure>
+<p>由于这种映射关系，在<code>DataFrame</code>中可以用<code>[col_name]</code>与<code>[col_list]</code>来取出相应的列与由多个列组成的表，结果分别为<code>Series</code>和<code>DataFrame</code>.<br>与<code>Series</code>类似，在数据框中同样可以取出相应的属性: values, index, columns, dtypes, shape<br>通过<code>.T</code>可以把<code>DataFrame</code>进行转置</p>
+<h1 id="常用基本函数"><a href="#常用基本函数" class="headerlink" title="常用基本函数"></a>常用基本函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&#x27;../data/learn_pandas.csv&#x27;</span>)</span><br><span class="line">df.columns</span><br><span class="line">df = df[df.columns[:<span class="number">7</span>]] <span class="comment">#只使用数据前7列</span></span><br></pre></td></tr></table></figure>
+<h2 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h2><p><code>head, tail</code>函数分别表示返回表或者序列的前<code>n</code>行和后<code>n</code>行，其中<code>n</code>默认为5。<br><code>info, describe</code>分别返回表的信息概况和表中数值列对应的主要统计量。<br>（<code>info, describe</code>只能实现较少信息的展示，如果想要对一份数据集进行全面且有效的观察，特别是在列较多的情况下，推荐使用<a target="_blank" rel="noopener" href="https://pandas-profiling.github.io/pandas-profiling/docs/">pandas-profiling</a>包，它将在第十一章被再次提到。）</p>
+<h2 id="特征统计函数"><a href="#特征统计函数" class="headerlink" title="特征统计函数"></a>特征统计函数</h2><p>在<code>Series</code>和<code>DataFrame</code>上定义了许多统计函数，最常见的是<code>sum, mean, median, var, std, max, min</code>。例如，选出身高和体重列进行演示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df_demo = df[[<span class="string">&#x27;Height&#x27;</span>, <span class="string">&#x27;Weight&#x27;</span>]]</span><br><span class="line">df_demo.mean()</span><br><span class="line">Out: </span><br><span class="line">Height <span class="number">163.218033</span> </span><br><span class="line">Weight <span class="number">55.015873</span> </span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<p>此外，需要介绍的是<code>quantile, count, idxmax</code>这三个函数，它们分别返回的是分位数、非缺失值个数、最大值对应的索引.<br>上面这些所有的函数，由于操作后返回的是标量，所以又称为聚合函数，它们有一个公共参数<code>axis</code>，默认为0代表逐列聚合，如果设置为1则表示逐行聚合.</p>
+<h2 id="唯一值函数"><a href="#唯一值函数" class="headerlink" title="唯一值函数"></a>唯一值函数</h2><p>对序列使用<code>unique</code>和<code>nunique</code>可以分别得到其唯一值组成的列表和唯一值的个数.</p>
+<p><code>value_counts</code>可以得到唯一值和其对应出现的频数.</p>
+<p>如果想要观察多个列组合的&#x3D;&#x3D;唯一值&#x3D;&#x3D;，可以使用<code>drop_duplicates</code>。其中的关键参数是<code>keep</code>，默认值<code>first</code>表示每个组合保留&#x3D;&#x3D;第一次&#x3D;&#x3D;出现的所在行，<code>last</code>表示保留&#x3D;&#x3D;最后一次&#x3D;&#x3D;出现的所在行，<code>False</code>表示把所有重复组合所在的行剔除。（在Series上也可以使用）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_demo = df[[<span class="string">&#x27;Gender&#x27;</span>,<span class="string">&#x27;Transfer&#x27;</span>,<span class="string">&#x27;Name&#x27;</span>]]</span><br><span class="line"><span class="built_in">print</span>(df_demo.drop_duplicates([<span class="string">&#x27;Gender&#x27;</span>, <span class="string">&#x27;Transfer&#x27;</span>]))</span><br><span class="line"><span class="comment"># 可想而知，输出是2*3的表格</span></span><br></pre></td></tr></table></figure>
+<p>此外，<code>duplicated</code>和<code>drop_duplicates</code>的功能类似，但前者返回了是否为唯一值的布尔列表，其<code>keep</code>参数与后者一致。其返回的序列，把重复元素设为<code>True</code>，否则为<code>False</code>。 <code>drop_duplicates</code>等价于把<code>duplicated</code>为<code>True</code>的对应行剔除。（在Series上也可以使用）</p>
+<h2 id="替换函数"><a href="#替换函数" class="headerlink" title="替换函数"></a>替换函数</h2><p>一般而言，替换操作是针对某一个列进行的，因此下面的例子都以<code>Series</code>举例。<code>pandas</code>中的替换函数可以归纳为三类：映射替换、逻辑替换、数值替换。其中映射替换包含<code>replace</code>方法、第八章中的<code>str.replace</code>方法以及第九章中的<code>cat.codes</code>方法，此处介绍<code>replace</code>的用法。</p>
+<p>在<code>replace</code>中，可以通过字典构造，或者传入两个列表来进行替换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;Gender&#x27;</span>].replace(&#123;<span class="string">&#x27;Female&#x27;</span>:<span class="number">0</span>, <span class="string">&#x27;Male&#x27;</span>:<span class="number">1</span>&#125;).head()</span><br><span class="line">df[<span class="string">&#x27;Gender&#x27;</span>].replace([<span class="string">&#x27;Female&#x27;</span>, <span class="string">&#x27;Male&#x27;</span>], [<span class="number">0</span>, <span class="number">1</span>]).head()</span><br></pre></td></tr></table></figure>
+<p>另外，<code>replace</code>还有一种特殊的方向替换，指定<code>method</code>参数为<code>ffill</code>则为用前面一个最近的未被替换的值进行替换，<code>bfill</code>则使用后面最近的未被替换的值进行替换。从下面的例子可以看到，它们的结果是不同的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series([<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>])</span><br><span class="line">s.replace([<span class="number">1</span>, <span class="number">2</span>], method=<span class="string">&#x27;ffill&#x27;</span>)</span><br><span class="line">s.replace([<span class="number">1</span>, <span class="number">2</span>], method=<span class="string">&#x27;bfill&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>【WARNING】正则替换请使用<code>str.replace</code><br>虽然对于<code>replace</code>而言可以使用正则替换，但是当前版本下对于<code>string</code>类型的正则替换还存在<code>bug</code>，因此如有此需求，请选择<code>str.replace</code>进行替换操作，具体的方式将在第八章中讲解。</p>
+</blockquote>
+<p>逻辑替换包括了<code>where</code>和<code>mask</code>，这两个函数是完全对称的：<code>where</code>函数在传入条件为<code>False</code>的对应行进行替换，而<code>mask</code>在传入条件为<code>True</code>的对应行进行替换，当不指定替换值时，替换为缺失值。<br>需要注意的是，传入的条件只需是与被调用的<code>Series</code>索引一致的布尔序列即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s_condition= pd.Series([<span class="literal">True</span>,<span class="literal">False</span>,<span class="literal">False</span>,<span class="literal">True</span>],index=s.index)</span><br><span class="line">s.mask(s_condition, -<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<p>数值替换包含了<code>round, abs, clip</code>方法，它们分别表示按照给定精度四舍五入、取绝对值和截断：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series([-<span class="number">1</span>, <span class="number">1.2345</span>, <span class="number">100</span>, -<span class="number">50</span>])</span><br><span class="line">s.clip(<span class="number">0</span>, <span class="number">2</span>) <span class="comment"># 前两个数分别表示上下截断边界</span></span><br></pre></td></tr></table></figure>
+<h2 id="排序函数"><a href="#排序函数" class="headerlink" title="排序函数"></a>排序函数</h2><p>排序共有两种方式，其一为值排序，其二为索引排序，对应的函数是<code>sort_values</code>和<code>sort_index</code><br>为了演示排序函数，下面先利用<code>set_index</code>方法把年级和姓名两列作为索引，多级索引的内容和索引设置的方法将在第三章进行详细讲解。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_demo = df[[<span class="string">&#x27;Grade&#x27;</span>, <span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;Height&#x27;</span>, <span class="string">&#x27;Weight&#x27;</span>]].set_index([<span class="string">&#x27;Grade&#x27;</span>,<span class="string">&#x27;Name&#x27;</span>])</span><br><span class="line">df_demo.head(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>对身高进行排序，默认参数<code>ascending=True</code>为升序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_demo.sort_values(<span class="string">&#x27;Height&#x27;</span>, ascending=<span class="literal">False</span>).head()</span><br></pre></td></tr></table></figure>
+<p>在排序中，经常遇到多列排序的问题，比如在体重相同的情况下，对身高进行排序，并且保持身高降序排列，体重升序排列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_demo.sort_values([<span class="string">&#x27;Weight&#x27;</span>,<span class="string">&#x27;Height&#x27;</span>],ascending=[<span class="literal">True</span>,<span class="literal">False</span>]).head()</span><br></pre></td></tr></table></figure>
+<p>索引排序的用法和值排序完全一致，只不过元素的值在索引中，此时需要指定索引层的名字或者层号，用参数<code>level</code>表示。另外，需要注意的是字符串的排列顺序由字母顺序决定。</p>
+<h2 id="apply方法"><a href="#apply方法" class="headerlink" title="apply方法"></a>apply方法</h2><p><code>apply</code>方法常用于<code>DataFrame</code>的行迭代或者列迭代，它的<code>axis</code>含义与第2小节中的统计聚合函数一致，<code>apply</code>的参数往往是一个以序列为输入的函数.<br>同样的，可以利用<code>lambda</code>表达式使得书写简洁，这里的<code>x</code>就指代被调用的<code>df_demo</code>表中逐个输入的序列:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_demo.apply(<span class="keyword">lambda</span> x:x.mean())</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>【WARNING】谨慎使用<code>apply</code><br>得益于传入自定义函数的处理，<code>apply</code>的自由度很高，但这是以性能为代价的。一般而言，使用<code>pandas</code>的内置函数处理和<code>apply</code>来处理同一个任务，其速度会相差较多，因此只有在确实存在自定义需求的情境下才考虑使用<code>apply</code>。</p>
+</blockquote>
+<h1 id="窗口对象"><a href="#窗口对象" class="headerlink" title="窗口对象"></a>窗口对象</h1><h2 id="滑窗对象"><a href="#滑窗对象" class="headerlink" title="滑窗对象"></a>滑窗对象</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">roller = s.rolling(window = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Pandas 的 <code>rolling</code> 默认是<strong>向后看（backward-looking）</strong>的，窗口的<strong>右边界就是当前行</strong>。也就是说，对于第 <code>i</code> 个位置，窗口包含的是：**[i-2, i-1, i]** （窗口大小为 3 时）</p>
+</blockquote>
+<p>对于滑动相关系数或滑动协方差的计算，可以如下写出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s2 = pd.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">16</span>,<span class="number">30</span>])</span><br><span class="line">roller.cov(s2)</span><br><span class="line">roller.corr(s2)</span><br></pre></td></tr></table></figure>
+<p>此外，还支持使用<code>apply</code>传入自定义函数，其传入值是对应窗口的<code>Series</code>.</p>
+<p><code>shift, diff, pct_change</code>是一组类滑窗函数，它们的公共参数为<code>periods=n</code>，默认为1，分别表示取向前第<code>n</code>个元素的值、与向前第<code>n</code>个元素做差（与<code>Numpy</code>中不同，后者表示<code>n</code>阶差分）、与向前第<code>n</code>个元素相比计算增长率。这里的<code>n</code>可以为负，表示反方向的类似操作。<br>将其视作类滑窗函数的原因是，它们的功能可以用窗口大小为<code>n+1</code>的<code>rolling</code>方法等价代替：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rolling(<span class="number">3</span>).apply(<span class="keyword">lambda</span> x:<span class="built_in">list</span>(x)[<span class="number">0</span>]) <span class="comment"># s.shift(2)</span></span><br></pre></td></tr></table></figure>
+<h2 id="扩张窗口"><a href="#扩张窗口" class="headerlink" title="扩张窗口"></a>扩张窗口</h2><p>扩张窗口又称累计窗口，可以理解为一个动态长度的窗口，其窗口的大小就是从序列开始处到具体操作的对应位置，其使用的聚合函数会作用于这些逐步扩张的窗口上。具体地说，设序列为a1, a2, a3, a4，则其每个位置对应的窗口即[a1]、[a1, a2]、[a1, a2, a3]、[a1, a2, a3, a4]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series([<span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">10</span>])</span><br><span class="line">s.expanding().mean()</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Robrashi258.github.io">Robrashi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://robrashi258.github.io/2026/09/04/Pandas%E5%9F%BA%E7%A1%80/">https://robrashi258.github.io/2026/09/04/Pandas%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Robrashi258.github.io" target="_blank">Robrashi's blogs</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></div><div class="post-share"><div class="social-share" data-image="/image/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/09/06/Numpy%E5%9F%BA%E7%A1%80/" title="Numpy基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Numpy基础</div></div><div class="info-2"><div class="info-item-1">np数组的构造最一般的方法是通过 array 来构造： 123In [29]: import numpy as np In [30]: np.array([1,2,3]) Out[30]: array([1, 2, 3])  等差序列：np.linspace, np.arange1234In [31]: np.linspace(1,5,11) # 起始、终止（包含）、样本个数  Out[31]: array([1. , 1.4, 1.8, 2.2, 2.6, 3. , 3.4, 3.8, 4.2, 4.6, 5. ])  In [32]: np.arange(1,5,2) # 起始、终止（不包含）、步长 Out[32]: array([1, 3]) 特殊矩阵：zeros, eye, full1234567891011121314In [33]: np.zeros((2,3)) # 传入元组表示各维度大小 Out[33]: array([[0., 0., 0.], [0., 0., 0.]]) In [34]: np.eye(3) # 3*3 的单位矩阵 Out[34]: arra...</div></div></div></a><a class="pagination-related" href="/2026/09/03/Python%E5%9F%BA%E7%A1%80/" title="Python学习记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Python学习记录</div></div><div class="info-2"><div class="info-item-1">序由于科研培训需要，本人开始自学python。学习内容包括基本语法、Numpy基础、Matplotlib可视化。9.3~9.10目标如下：  掌握 Python 核心 语法，能将数学公式 转化为函数，读懂算 法逻辑 掌握 NumPy 数组 操作，建立向量与矩 阵化思维，为数值分 析打基础 能用 Matplotlib 实 现数据可视化，直观 分析数值结果（如收 敛性、误差轨迹  由于有C++基础，在9.3已基本过了一遍语法部分。当然，只到“看懂”水平。因此，记录略过大部分语法不写，只含Numpy、Pandas与Matplotlib基础。 Python基础1.列表推导式与条件赋值 [* for i in *]其中，第一个 * 为映射函数，其输入为后面 i 指代的内容，第二个 * 表示迭代的对象。   value &#x3D; a if condition else b  下面举一个例子，截断列表中超过 5 的元素： 123In [9]: L = [1, 2, 3, 4, 5, 6, 7] In [10]: [i if i &lt;= 5 else 5 for i in L] Out[...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/09/06/Numpy%E5%9F%BA%E7%A1%80/" title="Numpy基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-06</div><div class="info-item-2">Numpy基础</div></div><div class="info-2"><div class="info-item-1">np数组的构造最一般的方法是通过 array 来构造： 123In [29]: import numpy as np In [30]: np.array([1,2,3]) Out[30]: array([1, 2, 3])  等差序列：np.linspace, np.arange1234In [31]: np.linspace(1,5,11) # 起始、终止（包含）、样本个数  Out[31]: array([1. , 1.4, 1.8, 2.2, 2.6, 3. , 3.4, 3.8, 4.2, 4.6, 5. ])  In [32]: np.arange(1,5,2) # 起始、终止（不包含）、步长 Out[32]: array([1, 3]) 特殊矩阵：zeros, eye, full1234567891011121314In [33]: np.zeros((2,3)) # 传入元组表示各维度大小 Out[33]: array([[0., 0., 0.], [0., 0., 0.]]) In [34]: np.eye(3) # 3*3 的单位矩阵 Out[34]: arra...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Robrashi</div><div class="author-info-description">沉淀|计拔</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Robrashi258"><i class="fab fa-github"></i><span>Follow me!</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">摸鱼...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%8F%96%E5%92%8C%E5%86%99%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">文件的读取和写入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.1.</span> <span class="toc-text">文件读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text">数据写入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">基本数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Series"><span class="toc-number">2.1.</span> <span class="toc-text">Series</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DataFrame"><span class="toc-number">2.2.</span> <span class="toc-text">DataFrame</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">常用基本函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E6%80%BB%E5%87%BD%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">汇总函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">特征统计函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E5%80%BC%E5%87%BD%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">唯一值函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">替换函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E5%87%BD%E6%95%B0"><span class="toc-number">3.5.</span> <span class="toc-text">排序函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply%E6%96%B9%E6%B3%95"><span class="toc-number">3.6.</span> <span class="toc-text">apply方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">窗口对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%91%E7%AA%97%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.1.</span> <span class="toc-text">滑窗对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%BC%A0%E7%AA%97%E5%8F%A3"><span class="toc-number">4.2.</span> <span class="toc-text">扩张窗口</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/06/Numpy%E5%9F%BA%E7%A1%80/" title="Numpy基础">Numpy基础</a><time datetime="2026-09-06T07:37:21.425Z" title="发表于 2026-09-06 15:37:21">2026-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/04/Pandas%E5%9F%BA%E7%A1%80/" title="Pandas基础">Pandas基础</a><time datetime="2026-09-04T11:45:39.335Z" title="发表于 2026-09-04 19:45:39">2026-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/Python%E5%9F%BA%E7%A1%80/" title="Python学习记录">Python学习记录</a><time datetime="2026-09-02T16:00:00.000Z" title="发表于 2026-09-03 00:00:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/07/ClaudeCode%E4%BD%BF%E7%94%A8/" title="ClaudeCode使用">ClaudeCode使用</a><time datetime="2026-08-07T08:20:34.572Z" title="发表于 2026-08-07 16:20:34">2026-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/05/Markdown%E8%AF%AD%E6%B3%95/" title="Markdown语法">Markdown语法</a><time datetime="2026-08-05T12:31:36.459Z" title="发表于 2026-08-05 20:31:36">2026-08-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/default_top_image_2.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Robrashi</span></div><div class="footer_custom_text">这是页脚</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
