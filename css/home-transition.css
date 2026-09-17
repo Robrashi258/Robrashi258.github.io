@@ -1,0 +1,40 @@
+/* Blend the homepage banner into the site's fixed background image. */
+#page-header.full_page::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 1;
+  height: clamp(150px, 26vh, 280px);
+  background-image: url('/image/background.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 90%);
+  mask-image: linear-gradient(to bottom, transparent, #000 90%);
+  pointer-events: none;
+  content: '';
+}
+
+/* Match Butterfly's dark overlay on #web_bg. */
+[data-theme='dark'] #page-header.full_page::after {
+  background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('/image/background.png');
+}
+
+#page-header.full_page #site-info,
+#page-header.full_page #scroll-down {
+  z-index: 2;
+}
+
+#page-header.full_page + #content-inner.layout {
+  position: relative;
+  z-index: 2;
+  margin-top: -24px;
+}
+
+@media (max-width: 768px) {
+  #page-header.full_page + #content-inner.layout {
+    margin-top: -14px;
+  }
+}
