@@ -1,0 +1,100 @@
+/* Light code palette, shared by Prism's language grammars. */
+:root {
+  --hl-color: #263238;
+  --hl-bg: #f7f9fc;
+  --hltools-bg: #edf2f8;
+  --hltools-color: #465468;
+  --hlnumber-bg: #f1f5f9;
+  --hlnumber-color: #788597;
+  --hlscrollbar-bg: #cbd5e1;
+  --code-keyword: #7541b0;
+  --code-function: #145ca8;
+  --code-variable: #087884;
+  --code-string: #187647;
+  --code-number: #a65013;
+  --code-comment: #697586;
+  --code-punctuation: #526070;
+}
+
+.container pre[class*='language-'] {
+  background: var(--hl-bg);
+  color: var(--hl-color);
+}
+
+.container pre[class*='language-'] .token.keyword,
+.container pre[class*='language-'] .token.control,
+.container pre[class*='language-'] .token.directive,
+.container pre[class*='language-'] .token.atrule {
+  color: var(--code-keyword);
+  font-weight: 600;
+}
+
+.container pre[class*='language-'] .token.function,
+.container pre[class*='language-'] .token.method,
+.container pre[class*='language-'] .token.function-call {
+  color: var(--code-function);
+}
+
+.container pre[class*='language-'] .token.variable,
+.container pre[class*='language-'] .token.parameter,
+.container pre[class*='language-'] .token.property,
+.container pre[class*='language-'] .token.attr-name {
+  color: var(--code-variable);
+}
+
+.container pre[class*='language-'] .token.string,
+.container pre[class*='language-'] .token.char,
+.container pre[class*='language-'] .token.attr-value {
+  color: var(--code-string);
+}
+
+.container pre[class*='language-'] .token.number,
+.container pre[class*='language-'] .token.boolean,
+.container pre[class*='language-'] .token.constant {
+  color: var(--code-number);
+}
+
+.container pre[class*='language-'] .token.comment,
+.container pre[class*='language-'] .token.prolog,
+.container pre[class*='language-'] .token.doctype,
+.container pre[class*='language-'] .token.cdata {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+.container pre[class*='language-'] .token.punctuation,
+.container pre[class*='language-'] .token.operator {
+  color: var(--code-punctuation);
+}
+
+.container pre[class*='language-'] .token.builtin,
+.container pre[class*='language-'] .token.class-name,
+.container pre[class*='language-'] .token.tag,
+.container pre[class*='language-'] .token.selector {
+  color: #9c3f70;
+}
+
+/* Keep a readable code palette when the site's dark-mode toggle is used. */
+[data-theme='dark'] {
+  --hl-color: #dce4ec;
+  --hl-bg: #1b2430;
+  --hltools-bg: #263241;
+  --hltools-color: #c5d0dc;
+  --hlnumber-bg: #202b38;
+  --hlnumber-color: #94a3b8;
+  --hlscrollbar-bg: #46566a;
+  --code-keyword: #c7a1f4;
+  --code-function: #8bbdff;
+  --code-variable: #7ed6d8;
+  --code-string: #90d9a7;
+  --code-number: #f0bd83;
+  --code-comment: #9baaba;
+  --code-punctuation: #bfccd8;
+}
+
+[data-theme='dark'] .container pre[class*='language-'] .token.builtin,
+[data-theme='dark'] .container pre[class*='language-'] .token.class-name,
+[data-theme='dark'] .container pre[class*='language-'] .token.tag,
+[data-theme='dark'] .container pre[class*='language-'] .token.selector {
+  color: #e8a7c8;
+}
